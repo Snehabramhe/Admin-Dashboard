@@ -5,9 +5,9 @@ import { People, Warning, TrendingUp, History } from "@mui/icons-material";
 const MetricCard = ({ icon: Icon, title, value, bgColor, iconBgColor }) => (
   <Box
     sx={{
-      minWidth: "200px",
+      width: "180px",
       backgroundColor: bgColor,
-      borderRadius: 2,
+      borderRadius: 5,
       padding: 2,
       position: "relative",
     }}
@@ -86,13 +86,12 @@ const MetricsDashboard = () => {
   ];
 
   return (
-    <Card sx={{ p: 2, mr: 2, height: 197 }}>
-      <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
+    <Card sx={{  mr: 2, height: 197 }}>
+      <CardContent >
         <Box
           sx={{
             display: "flex",
             gap: 2,
-            // padding: 2,
             backgroundColor: "white",
             justifyContent: "space-around",
           }}

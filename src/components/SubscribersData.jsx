@@ -93,7 +93,7 @@ const SubscribersData = () => {
                 marginRight: "10px",
                 padding: "2px 10px",
                 height: "30px",
-                fontSize: '12px'
+                fontSize: "0.7rem",
               }}
             >
               {selectedState}{" "}
@@ -138,7 +138,7 @@ const SubscribersData = () => {
                 marginRight: "10px",
                 padding: "2px 10px",
                 height: "30px",
-                fontSize: '12px'
+                fontSize: "0.7rem",
               }}
             >
               {selectedDistrict}{" "}

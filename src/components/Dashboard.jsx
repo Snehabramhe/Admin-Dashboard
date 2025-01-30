@@ -21,11 +21,11 @@ const Dashboard = () => {
           <SalesCard />
         </Grid>
 
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={3}>
           <VisitorStats />
         </Grid>
 
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={6}>
           <MetricsDashboard />
         </Grid>
       </Grid>
