@@ -2,9 +2,23 @@ import React from "react";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import { TrendingUp, TrendingDown, BusinessCenter } from "@mui/icons-material";
 
-const SalesCard = () => {
+const SalesCard = ({
+  totalSales,
+  nriSalesPercentage,
+  localSalesPercentage,
+}) => {
   return (
-    <Card sx={{ p: 3, marginLeft: "20px" }}>
+    <Card
+      sx={{
+        p: 3,
+        mx: "auto",
+        ml: 2,
+        borderRadius: 4,
+        maxHeight: "210px",
+        minHeight: "210px",
+        mr: { xs: 2, sm: 0 },
+      }}
+    >
       <CardContent sx={{ p: 0, "&:last-child": { pb: 0 } }}>
         {/* Header Section */}
         <Box
@@ -22,9 +36,14 @@ const SalesCard = () => {
             <Typography
               variant="h4"
               component="div"
-              sx={{ fontWeight: "bold", mt: 1 }}
+              sx={{ fontWeight: "bold", mt: 1, fontSize: { md: "1.5rem" } }}
             >
-              $24,45678
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              }).format(totalSales)}
             </Typography>
           </Box>
 
@@ -32,8 +51,8 @@ const SalesCard = () => {
             sx={{
               backgroundColor: "primary.light",
               borderRadius: 2,
-              width: 48,
-              height: 48,
+              width: { xs: 48, sm: 48, md: 35 },
+              height: { xs: 48, sm: 48, md: 35 },
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -63,7 +82,7 @@ const SalesCard = () => {
             <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
               <TrendingUp sx={{ color: "success.main", fontSize: 20 }} />
               <Typography variant="body2" sx={{ color: "success.main" }}>
-                71%
+                {nriSalesPercentage}%
               </Typography>
             </Box>
           </Box>
@@ -80,7 +99,7 @@ const SalesCard = () => {
             <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
               <TrendingDown sx={{ color: "error.main", fontSize: 20 }} />
               <Typography variant="body2" sx={{ color: "error.main" }}>
-                29%
+                {localSalesPercentage}%
               </Typography>
             </Box>
           </Box>

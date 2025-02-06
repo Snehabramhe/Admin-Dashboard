@@ -56,28 +56,42 @@ const SubscribersData = () => {
   return (
     <Card
       sx={{
-        borderRadius: "16px",
-        marginLeft: "20px",
-        marginRight: "20px",
-        marginBottom: "20px",
+        borderRadius: 4,
+        ml: { xs: 2, md: 0 },
+        mr: 2,
+        mb: { xs: 2 },
+        height: { xs: "auto", md: "396px" },
+        minHeight: "396px",
       }}
     >
       <CardContent>
         <Box
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", sm: "column", md: "row" },
+            alignItems: {
+              xs: "flex-start",
+              sm: "flex-start",
+              md: "flex-start",
+            },
             justifyContent: "space-between",
-            alignItems: "center",
-            mb: 3,
-            mt: 2,
           }}
         >
-          <Box sx={{ ml: 3 }}>
+          <Box>
             <Typography variant="subtitle2" color="text.primary">
               Subscribers Data
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1,
+              mt: { xs: 1, sm: 1, md: 0 },
+              ml: { md: 1 },
+              mb: { md: 1 },
+            }}
+          >
             {/* State Dropdown */}
             <Button
               aria-controls={Boolean(anchorElState) ? "state-menu" : undefined}
@@ -93,7 +107,10 @@ const SubscribersData = () => {
                 marginRight: "10px",
                 padding: "2px 10px",
                 height: "30px",
-                fontSize: "0.7rem",
+              }}
+              sx={{
+                width: { xs: "125px", md: "105px" },
+                fontSize: { xs: "0.9rem", md: "0.65rem" },
               }}
             >
               {selectedState}{" "}
@@ -138,7 +155,10 @@ const SubscribersData = () => {
                 marginRight: "10px",
                 padding: "2px 10px",
                 height: "30px",
-                fontSize: "0.7rem",
+              }}
+              sx={{
+                width: { xs: "135px", md: "110px" },
+                fontSize: { xs: "0.9rem", md: "0.65rem" },
               }}
             >
               {selectedDistrict}{" "}
@@ -175,15 +195,15 @@ const SubscribersData = () => {
             alignItems: "center",
           }}
         >
-          <Box sx={{ width: "50%", height: 300 }}>
+          <Box sx={{ width: "40%", height: 300 }}>
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={data}
                   cx="50%"
                   cy="50%"
-                  innerRadius={40}
-                  outerRadius={80}
+                  innerRadius={"40%"}
+                  outerRadius={"80%"}
                   dataKey="value"
                   startAngle={90}
                   endAngle={-270}
@@ -197,7 +217,7 @@ const SubscribersData = () => {
             </ResponsiveContainer>
           </Box>
 
-          <Box sx={{ width: "45%" }}>
+          <Box sx={{ width: "55%" }}>
             {data.map((item, index) => (
               <Box
                 key={index}
@@ -215,7 +235,7 @@ const SubscribersData = () => {
                       height: 10,
                       borderRadius: "50%",
                       backgroundColor: item.color,
-                      mr: 1.5,
+                      mr: 0.5,
                     }}
                   />
                   <Typography sx={{ color: "#333", fontSize: "1rem" }}>

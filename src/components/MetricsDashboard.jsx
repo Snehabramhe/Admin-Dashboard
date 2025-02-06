@@ -1,24 +1,25 @@
 import React from "react";
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography, Grid } from "@mui/material";
 import { People, Warning, TrendingUp, History } from "@mui/icons-material";
 
 const MetricCard = ({ icon: Icon, title, value, bgColor, iconBgColor }) => (
   <Box
     sx={{
-      width: "180px",
       backgroundColor: bgColor,
-      borderRadius: 5,
+      borderRadius: 4,
       padding: 2,
       position: "relative",
+      width: "100%",
+      minHeight: "120px",
+      height: "100%",
     }}
   >
+    {/* Icon container */}
     <Box
       sx={{
         position: "absolute",
         top: 16,
         right: 16,
-        width: 60,
-        height: 60,
         borderRadius: "50%",
         backgroundColor: iconBgColor,
         display: "flex",
@@ -26,27 +27,18 @@ const MetricCard = ({ icon: Icon, title, value, bgColor, iconBgColor }) => (
         justifyContent: "center",
       }}
     >
-      <Icon sx={{ opacity: 0.8 }} />
+      <Icon sx={{ opacity: 0.8, fontSize: "2rem" }} />
     </Box>
 
-    <Box sx={{ paddingRight: "48px" }}>
+    {/* Card Content */}
+    <Box sx={{ mt: 10 }}>
       <Typography
         variant="body2"
-        sx={{
-          color: "text.secondary",
-          marginBottom: 0.5,
-          marginTop: 8,
-        }}
+        sx={{ color: "text.secondary", fontSize: "0.7rem", mb: 0.5 }}
       >
         {title}
       </Typography>
-      <Typography
-        variant="h5"
-        sx={{
-          fontWeight: 600,
-          fontSize: "1.5rem",
-        }}
-      >
+      <Typography variant="h5" sx={{ fontWeight: 600, fontSize: "1.2rem" }}>
         {value.toLocaleString()}
       </Typography>
     </Box>
@@ -86,27 +78,22 @@ const MetricsDashboard = () => {
   ];
 
   return (
-    <Card sx={{  mr: 2, height: 197 }}>
-      <CardContent >
-        <Box
-          sx={{
-            display: "flex",
-            gap: 2,
-            backgroundColor: "white",
-            justifyContent: "space-around",
-          }}
-        >
+    <Card
+      sx={{
+        mr: 2,
+        borderRadius: 4,
+        minHeight: "210px",
+        ml: { xs: 2, sm: 2, md: 0 },
+      }}
+    >
+      <CardContent>
+        <Grid container spacing={2}>
           {metrics.map((metric, index) => (
-            <MetricCard
-              key={index}
-              icon={metric.icon}
-              title={metric.title}
-              value={metric.value}
-              bgColor={metric.bgColor}
-              iconBgColor={metric.iconBgColor}
-            />
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <MetricCard {...metric} />
+            </Grid>
           ))}
-        </Box>
+        </Grid>
       </CardContent>
     </Card>
   );

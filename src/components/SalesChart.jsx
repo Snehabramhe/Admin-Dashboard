@@ -5,12 +5,12 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 
 const data = [
-  { name: "Tanuku", value: 195, color: "#A5A6F6" },
-  { name: "Attili", value: 100, color: "#94E4D3" },
-  { name: "Palakollu", value: 200, color: "#000000" },
-  { name: "Rajole", value: 150, color: "#8BB8F4" },
-  { name: "Eluru", value: 170, color: "#C5D6F5" },
-  { name: "Tanuku", value: 160, color: "#94E4D3" },
+  { name: "Tanuku", value: 125, color: "#A5A6F6" },
+  { name: "Attili", value: 140, color: "#94E4D3" },
+  { name: "Palakollu", value: 120, color: "#000000" },
+  { name: "Rajole", value: 165, color: "#8BB8F4" },
+  { name: "Eluru", value: 90, color: "#C5D6F5" },
+  { name: "Tanuku", value: 130, color: "#94E4D3" },
 ];
 
 const yAxisLabels = [
@@ -101,9 +101,9 @@ const SalesChart = () => {
     <>
       <Card
         sx={{
-          borderRadius: "16px",
-          marginLeft: "20px",
-          marginRight: "20px",
+          borderRadius: 4,
+          ml: { xs: 2, sm: 2, md: 0 },
+          mr: 2,
         }}
       >
         <CardContent>
@@ -112,11 +112,16 @@ const SalesChart = () => {
               background: "white",
               height: "96px",
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              flexDirection: { xs: "column", sm: "column", md: "row" },
+              alignItems: {
+                xs: "flex-start",
+                sm: "flex-start",
+                md: "flex-start",
+              },
+              justifyContent: "space-between",
             }}
           >
-            <Box sx={{ ml: 3 }}>
+            <Box sx={{ ml: 0 }}>
               <Typography variant="subtitle2" color="text.primary">
                 Sales Report
               </Typography>
@@ -124,9 +129,12 @@ const SalesChart = () => {
 
             <Box
               sx={{
-                flexGrow: 1,
-                display: { xs: "none", md: "flex" },
-                justifyContent: "flex-end",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 1,
+                mt: { xs: 1, sm: 1, md: 0 },
+                ml: { md: 1 },
+                mb: { md: 1 },
               }}
             >
               {/* State Dropdown */}
@@ -146,11 +154,14 @@ const SalesChart = () => {
                   marginRight: "10px",
                   padding: "2px 10px",
                   height: "30px",
-                  fontSize: "0.7rem",
+                }}
+                sx={{
+                  width: { xs: "125px", md: "105px" },
+                  fontSize: { xs: "0.9rem", md: "0.65rem" },
                 }}
               >
                 {selectedState}{" "}
-                <span style={{ fontSize: "12px", marginLeft: "5px" }}>▼</span>
+                <span style={{ fontSize: "8px", marginLeft: "5px" }}>▼</span>
               </Button>
               <Menu
                 id="state-menu"
@@ -191,11 +202,14 @@ const SalesChart = () => {
                   marginRight: "10px",
                   padding: "2px 10px",
                   height: "30px",
-                  fontSize: "0.7rem",
+                }}
+                sx={{
+                  width: { xs: "130px", md: "110px" },
+                  fontSize: { xs: "0.9rem", md: "0.65rem" },
                 }}
               >
                 {selectedDistrict}{" "}
-                <span style={{ fontSize: "12px", marginLeft: "5px" }}>▼</span>
+                <span style={{ fontSize: "8px", marginLeft: "5px" }}>▼</span>
               </Button>
               <Menu
                 id="district-menu"
@@ -234,11 +248,14 @@ const SalesChart = () => {
                   marginRight: "10px",
                   padding: "2px 10px",
                   height: "30px",
-                  fontSize: "0.7rem",
+                }}
+                sx={{
+                  width: { xs: "125px", md: "105px" },
+                  fontSize: { xs: "0.9rem", md: "0.65rem" },
                 }}
               >
                 {selectedArea}{" "}
-                <span style={{ fontSize: "12px", marginLeft: "5px" }}>▼</span>
+                <span style={{ fontSize: "8px", marginLeft: "5px" }}>▼</span>
               </Button>
               <Menu
                 id="area-menu"
@@ -288,7 +305,7 @@ const SalesChart = () => {
                 barSize={30}
                 data={data.map((item) => ({
                   ...item,
-                  fill: getRandomColor(), // Assign a random color to each bar
+                  fill: getRandomColor(),
                 }))}
               />
             </BarChart>

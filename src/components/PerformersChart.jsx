@@ -138,7 +138,7 @@ const PerformersChart = () => {
 
   const CustomBar = (props) => {
     const { x, y, width, height, img } = props;
-    const radius = 16;
+    const radius = 10;
     const spacing = 10;
 
     return (
@@ -153,10 +153,10 @@ const PerformersChart = () => {
         </defs>
 
         <image
-          x={x + width / 2 - radius}
-          y={y - 32 - spacing}
-          width="32"
-          height="32"
+          x={x + width / 2 - radius - 3}
+          y={y - 20 - spacing}
+          width="25"
+          height="25"
           xlinkHref={img}
           clipPath={`url(#clip-${x})`}
           preserveAspectRatio="xMidYMid slice"
@@ -167,19 +167,18 @@ const PerformersChart = () => {
 
   return (
     <>
-      <Card sx={{ borderRadius: "16px", marginLeft: "20px" }}>
+      <Card sx={{ borderRadius: "16px", ml: 2, mr: { xs: 2, md: 0 } }}>
         <CardContent>
           <Box
             sx={{
-              background: "white",
-              height: "80px",
               display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              mb: -2,
+              flexDirection: { xs: "column", sm: "column", md: "row" },
+              alignItems: { xs: "flex-start", sm: "flex-start", md: "center" },
+              justifyContent: "space-between",
+              mb: 3,
             }}
           >
-            <Box sx={{ ml: 3 }}>
+            <Box>
               <Typography
                 variant="body2"
                 color="text.secondary"
@@ -194,9 +193,10 @@ const PerformersChart = () => {
 
             <Box
               sx={{
-                flexGrow: 1,
-                display: { xs: "none", md: "flex" },
-                justifyContent: "flex-end",
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 1,
+                mt: { xs: 1, sm: 1, md: 0 },
               }}
             >
               {/* State Dropdown */}
@@ -219,7 +219,7 @@ const PerformersChart = () => {
                 }}
               >
                 {selectedState}{" "}
-                <span style={{ fontSize: "12px", marginLeft: "5px" }}>▼</span>
+                <span style={{ fontSize: "10px", marginLeft: "5px" }}>▼</span>
               </Button>
               <Menu
                 id="state-menu"
@@ -263,7 +263,7 @@ const PerformersChart = () => {
                 }}
               >
                 {selectedDistrict}{" "}
-                <span style={{ fontSize: "12px", marginLeft: "5px" }}>▼</span>
+                <span style={{ fontSize: "10px", marginLeft: "5px" }}>▼</span>
               </Button>
               <Menu
                 id="district-menu"
@@ -305,7 +305,7 @@ const PerformersChart = () => {
                 }}
               >
                 {selectedArea}{" "}
-                <span style={{ fontSize: "12px", marginLeft: "5px" }}>▼</span>
+                <span style={{ fontSize: "10px", marginLeft: "5px" }}>▼</span>
               </Button>
               <Menu
                 id="area-menu"
@@ -334,7 +334,7 @@ const PerformersChart = () => {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart
               data={performersData}
-              margin={{ top: 40, right: 30, left: 20, bottom: 5 }}
+              margin={{ top: 40, bottom: 5, right: 16 }}
             >
               <CartesianGrid strokeDasharray="5 5" vertical={false} />
 
@@ -344,6 +344,7 @@ const PerformersChart = () => {
                 tickLine={false}
                 scale="point"
                 padding={{ left: 10, right: 10 }}
+                tick={{ fontSize: "clamp(0.6rem, 2vw, 1rem)" }}
               />
               <YAxis
                 axisLine={false}

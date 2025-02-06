@@ -71,18 +71,22 @@ const ShadedLineChart = () => {
     <Card
       sx={{
         borderRadius: "16px",
-        marginLeft: "20px",
-        padding: "20px",
-        marginBottom: "20px",
+        ml: 2,
+        mr: { xs: 2, md: 0 },
+        mt: { xs: 0 },
+        pt: 0,
       }}
     >
-      <CardContent>
+      <CardContent sx={{ minHeight: "192px" }}>
         {/* Header Section */}
         <Box
           sx={{
             display: "flex",
+            flexDirection: { xs: "column", sm: "column", md: "row" },
+            alignItems: { xs: "flex-start", sm: "flex-start", md: "center" },
             justifyContent: "space-between",
-            alignItems: "center",
+            mb: 3,
+            pt: 0,
           }}
         >
           <Box>
@@ -90,7 +94,14 @@ const ShadedLineChart = () => {
               Location Wise Visitors
             </h3>
           </Box>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 1,
+              mt: { xs: 1, sm: 1, md: 0 },
+            }}
+          >
             {/* State Dropdown */}
             <Button
               aria-controls={
@@ -194,9 +205,16 @@ const ShadedLineChart = () => {
             </defs>
 
             {/* X & Y Axis */}
-            <XAxis dataKey="name" tick={{ fill: "#999" }} />
+            <XAxis
+              dataKey="name"
+              tick={{ fill: "#999" }}
+              axisLine={false}
+              tickLine={false}
+            />
             <YAxis
               tick={{ fill: "#999" }}
+              axisLine={false}
+              tickLine={false}
               domain={[0, 30000]}
               ticks={[0, 10000, 20000, 30000]}
               tickFormatter={(value) => `${value / 1000}K`}
@@ -215,10 +233,10 @@ const ShadedLineChart = () => {
             />
 
             {/* Extra Labels in Graph */}
-            <text x="12%" y="90" fill="#000" fontSize="14px" fontWeight="600">
+            <text x="12%" y="90" fill="#000" fontSize="0.8rem" fontWeight="400">
               Location Wise Visitors
             </text>
-            <text x="12%" y="140" fill="#999" fontSize="12px">
+            <text x="12%" y="140" fill="#999" fontSize="0.6rem">
               30K
             </text>
           </AreaChart>

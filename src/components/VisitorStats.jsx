@@ -1,84 +1,72 @@
 import React from "react";
 import { Box, Typography, Card, CardContent } from "@mui/material";
-import { PieChart, Pie, Cell } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-const VisitorStats = () => {
-  // Data for NRI Visitor
-  const nriData = [
-    { name: "filled", value: 71 },
-    { name: "unfilled", value: 29 },
-  ];
-
-  // Data for Local Visitor
-  const localData = [
-    { name: "filled", value: 29 },
-    { name: "unfilled", value: 71 },
+const VisitorStats = ({ nriVisitorPercentage, localVisitorPercentage }) => {
+  // Dynamic Data for Pie Charts
+  const createPieData = (filledValue) => [
+    { name: "filled", value: filledValue },
+    { name: "unfilled", value: 100 - filledValue },
   ];
 
   const renderPieChart = (data, value) => (
-    <PieChart width={130} height={98}>
-      <Pie
-        data={data}
-        cx={65}
-        cy={65}
-        startAngle={225}
-        endAngle={-45}
-        innerRadius={45}
-        outerRadius={55}
-        paddingAngle={0}
-        dataKey="value"
-      >
-        <Cell fill="#4169e1" />
-        <Cell fill="#f0f0f0" />
-      </Pie>
-      <text
-        x={65}
-        y={65}
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fontSize={20}
-        fontWeight="500"
-      >
-        {value}%
-      </text>
-    </PieChart>
+    <ResponsiveContainer width="100%" height={90}>
+      <PieChart width={100} height={90}>
+        <Pie
+          data={data}
+          cx="50%"
+          cy="50%"
+          startAngle={225}
+          endAngle={-45}
+          innerRadius="75%"
+          outerRadius="95%"
+          dataKey="value"
+        >
+          <Cell fill="#4169e1" />
+          <Cell fill="#f0f0f0" />
+        </Pie>
+        <text
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize={18}
+          fontWeight="500"
+        >
+          {value}%
+        </text>
+      </PieChart>
+    </ResponsiveContainer>
   );
 
   return (
     <Card
       sx={{
-        padding: 0,
+        borderRadius: 4,
+        minHeight: "210px",
+        mr: { xs: 2, sm: 2, md: 0 },
+        ml: { xs: 2, sm: 0 },
       }}
     >
-      <CardContent sx={{ p: 0 }}>
+      <CardContent>
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "space-around",
             alignItems: "center",
           }}
         >
           <Typography
             variant="subtitle1"
             color="text.primary"
-            sx={{
-              fontWeight: 500,
-              color: "#333",
-              mt: 2,
-              ml: 2,
-            }}
+            sx={{ fontWeight: 500 }}
           >
             Visitors
           </Typography>
           <Typography
             variant="subtitle2"
             color="text.secondary"
-            sx={{
-              color: "#9e9e9e",
-              fontWeight: 400,
-              mt: 2,
-              mr: 2,
-            }}
+            sx={{ color: "#9e9e9e" }}
           >
             Vs Last Week
           </Typography>
@@ -88,34 +76,48 @@ const VisitorStats = () => {
           sx={{
             display: "flex",
             justifyContent: "space-around",
-            //   px: 2
+            mt: 1,
+            width: "100%",
           }}
         >
-          <Box sx={{ textAlign: "center" }}>
-            {renderPieChart(nriData, 71)}
-            <Typography
-              variant="subtitle2"
-              color="text.primary"
-              sx={{
-                mt: 1,
-              }}
-            >
-              NRI Visitor
-            </Typography>
+          {/* NRI Visitor */}
+          <Box sx={{ textAlign: "center", flex: "1 1 45%", mb: 2 }}>
+            {renderPieChart(
+              createPieData(nriVisitorPercentage),
+              nriVisitorPercentage
+            )}
           </Box>
 
-          <Box sx={{ textAlign: "center" }}>
-            {renderPieChart(localData, 29)}
-            <Typography
-              variant="subtitle2"
-              color="text.primary"
-              sx={{
-                mt: 1,
-              }}
-            >
-              Local Visitor
-            </Typography>
+          {/* Local Visitor */}
+          <Box sx={{ textAlign: "center", flex: "1 1 45%", mb: 2 }}>
+            {renderPieChart(
+              createPieData(localVisitorPercentage),
+              localVisitorPercentage
+            )}
           </Box>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="subtitle1"
+            color="text.primary"
+            sx={{ fontWeight: 500 }}
+          >
+            NRI Visitor
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            color="text.primary"
+            sx={{ fontWeight: 500 }}
+          >
+            Local Visitor
+          </Typography>
         </Box>
       </CardContent>
     </Card>
